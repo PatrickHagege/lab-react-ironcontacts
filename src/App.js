@@ -21,16 +21,23 @@ function App() {
   const sortByName = () => {
     const copyOfContacts = [...contacts];
     copyOfContacts.sort((a, b) => (a.name > b.name) ? -1 : ((b.name > a.name) ? 1 : 0));
-    console.log('SORT BY NAME :', copyOfContacts)
+    //console.log('SORT BY NAME :', copyOfContacts)
     setContacts(copyOfContacts);
   }
 
   const sortByPopularity = () => {
     const copyOfContacts = [...contacts];
     copyOfContacts.sort((a, b) => (a.popularity > b.popularity) ? -1 : ((b.popularity > a.popularity) ? 1 : 0));
-    console.log('SORT BY NAME :', copyOfContacts)
+    //console.log('SORT BY NAME :', copyOfContacts)
     setContacts(copyOfContacts);
   }
+
+  // const deleteContact = () => {
+  //   const copyOfContacts = [...contacts];
+
+  //   console.log('DELETE CONTACT :', copyOfContacts)
+  //   setContacts(copyOfContacts);
+  // }
 
   return (
     <div className="App">
