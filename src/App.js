@@ -20,14 +20,14 @@ function App() {
 
   const sortByName = () => {
     const copyOfContacts = [...contacts];
-    copyOfContacts.sort((a,b) => (a.name > b.name) ? -1 : ((b.name > a.name) ? 1 : 0));
+    copyOfContacts.sort((a, b) => (a.name > b.name) ? -1 : ((b.name > a.name) ? 1 : 0));
     console.log('SORT BY NAME :', copyOfContacts)
     setContacts(copyOfContacts);
   }
 
   const sortByPopularity = () => {
     const copyOfContacts = [...contacts];
-    copyOfContacts.sort((a,b) => (a.popularity > b.popularity) ? -1 : ((b.popularity > a.popularity) ? 1 : 0));
+    copyOfContacts.sort((a, b) => (a.popularity > b.popularity) ? -1 : ((b.popularity > a.popularity) ? 1 : 0));
     console.log('SORT BY NAME :', copyOfContacts)
     setContacts(copyOfContacts);
   }
@@ -36,10 +36,10 @@ function App() {
     <div className="App">
       <h1>IronContacts</h1>
       <div>
-    <button
+        <button
           onClick={(Contacts) => addRandomContact()}
           className='addRandomContact'
-          >
+        >
           Add Random Contact
         </button>
         <button
@@ -57,7 +57,7 @@ function App() {
         style={{
           border: '1px solid black',
           borderCollapse: 'collapse',
-          width:'60vw'
+          width: '60vw'
         }}
         cellSpacing="0"
         cellPadding="0"
@@ -69,12 +69,8 @@ function App() {
             <th scope='col'>Name</th>
             <th scope='col'>Popularity</th>
             <th scope='col'>Won Oscar</th>
-            <th
-              style={{
-                border: '1px solid black',
-                padding: '1rem'
-              }}
-              scope='col'>Won Emmy</th>
+            <th scope='col'>Won Emmy</th>
+            <th scope='col'>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -88,6 +84,14 @@ function App() {
                   {/* {conditionIsTrue ? "TROPHEE" : ""} */}
                 </td>
                 <td>{contact.wonEmmy && trophy}</td>
+                <td>
+                  <button
+                    // onClick={(Contacts) => deleteContact()}
+                    className='deleteContact'
+                  >
+                    Delete
+                  </button>
+                </td>
               </tr>)
           })}
         </tbody>
