@@ -32,12 +32,14 @@ function App() {
     setContacts(copyOfContacts);
   }
 
-  // const deleteContact = () => {
-  //   const copyOfContacts = [...contacts];
-
-  //   console.log('DELETE CONTACT :', copyOfContacts)
-  //   setContacts(copyOfContacts);
-  // }
+  const deleteContact = (id) => {
+    const filtered = contacts.filter(function(contact) {
+      //console.log('DELETE CONTACT :', contact.id)
+      return contact.id !== id
+    });
+    console.log("FILTERED", filtered)
+    setContacts(filtered);
+  }
 
   return (
     <div className="App">
@@ -93,7 +95,7 @@ function App() {
                 <td>{contact.wonEmmy && trophy}</td>
                 <td>
                   <button
-                    // onClick={(Contacts) => deleteContact()}
+                    onClick={() => deleteContact(contact.id)}
                     className='deleteContact'
                   >
                     Delete
