@@ -6,8 +6,6 @@ let initialContacts = fullContacts.slice(0, 5);
 
 let trophy = '🏆';
 
-console.log("avant app js", initialContacts);
-
 function App() {
   const [contacts, setContacts] = useState(initialContacts);
 
@@ -17,6 +15,20 @@ function App() {
     let randomContactIndex = Math.floor(Math.random() * slicedContacts.length);
     let randomContact = slicedContacts[randomContactIndex];
     copyOfContacts.push(randomContact);
+    setContacts(copyOfContacts);
+  }
+
+  const sortByName = () => {
+    const copyOfContacts = [...contacts];
+    copyOfContacts.sort((a,b) => (a.name > b.name) ? -1 : ((b.name > a.name) ? 1 : 0));
+    console.log('SORT BY NAME :', copyOfContacts)
+    setContacts(copyOfContacts);
+  }
+
+  const sortByPopularity = () => {
+    const copyOfContacts = [...contacts];
+    copyOfContacts.sort((a,b) => (a.popularity > b.popularity) ? -1 : ((b.popularity > a.popularity) ? 1 : 0));
+    console.log('SORT BY NAME :', copyOfContacts)
     setContacts(copyOfContacts);
   }
 
@@ -31,12 +43,12 @@ function App() {
           Add Random Contact
         </button>
         <button
-          // onClick={(Contacts) => sortByPopularity()}
+          onClick={(Contacts) => sortByPopularity()}
           className='sortByPopularity'>
           Sort by popularity
         </button>
         <button
-          // onClick={(Contacts) => sortByName()}
+          onClick={(Contacts) => sortByName()}
           className='sortByName'>
           Sort by name
         </button>
