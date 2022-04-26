@@ -28,7 +28,6 @@ function App() {
       copyOfContacts.push(randomContact);
       setContacts(copyOfContacts);
     }
-
   }
 
   const sortByName = () => {
