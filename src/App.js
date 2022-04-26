@@ -2,7 +2,8 @@ import './App.css';
 import React, { useState } from "react";
 import fullContacts from './contacts.json';
 
-let initialContacts = fullContacts.slice(0, 5);
+let contactsList = [...fullContacts];
+let initialContacts = contactsList.slice(0, 5);
 
 let trophy = '🏆';
 
@@ -11,23 +12,34 @@ function App() {
 
   const addRandomContact = () => {
     const copyOfContacts = [...contacts];
-    const slicedContacts = fullContacts.slice(copyOfContacts.length);
-    let randomContactIndex = Math.floor(Math.random() * slicedContacts.length);
-    let randomContact = slicedContacts[randomContactIndex];
-    copyOfContacts.push(randomContact);
-    setContacts(copyOfContacts);
+    // console.log('copyOfContacts.length :', copyOfContacts.length)
+    const slicedContacts = contactsList.slice(copyOfContacts.length);
+
+    if (slicedContacts.length > 0) {
+      // console.log('slicedContacts.length :', slicedContacts.length)
+      let randomContactIndex = Math.floor(Math.random() * slicedContacts.length);
+      let randomContact = slicedContacts[randomContactIndex];
+
+      let filteredContacts = contactsList.filter(function(contact) {
+        return contact !== randomContact
+      });
+
+      contactsList = [...filteredContacts]
+      copyOfContacts.push(randomContact);
+      setContacts(copyOfContacts);
+    }
+
   }
 
   const sortByName = () => {
     const copyOfContacts = [...contacts];
-    copyOfContacts.sort((a, b) => (a.name > b.name) ? -1 : ((b.name > a.name) ? 1 : 0));
-    //console.log('SORT BY NAME :', copyOfContacts)
+    copyOfContacts.sort((a, b) => (a.name > b.name) ? 1 : -1);
     setContacts(copyOfContacts);
   }
 
   const sortByPopularity = () => {
     const copyOfContacts = [...contacts];
-    copyOfContacts.sort((a, b) => (a.popularity > b.popularity) ? -1 : ((b.popularity > a.popularity) ? 1 : 0));
+    copyOfContacts.sort((a, b) => (a.popularity > b.popularity) ? 1 : -1);
     //console.log('SORT BY NAME :', copyOfContacts)
     setContacts(copyOfContacts);
   }
@@ -83,9 +95,9 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          {contacts.map((contact) => {
+          {contacts.map((contact, i) => {
             return (
-              <tr className='contact'>
+              <tr className='contact' key={i}>
                 <td><img src={contact.pictureUrl} alt={contact.name} /></td>
                 <td>{contact.name}</td>
                 <td>{Number.parseFloat(contact.popularity).toFixed(2)}</td>
